@@ -1,0 +1,149 @@
+for server start :- npm run dev
+
+await use karva mate je jagya per await use karo teni parent function ma async use karvu pade
+
+.env.example :- file github vala mate (github mathi koi aa projects copy kare to te aa file rename kari use kari sake)
+npm i bcrypt :- for password hashing
+npm i moment :- use for formating a data and time in js
+// session ****************************************************
+// npm i  express-session ==> for store session in node 
+// npm i express-flash ==>  for session
+// npm i connect-mongo ==> for store session in database
+// npm i noty :- for notifications in node js
+
+session can work without cookies
+*********************************************************
+
+***********************  login mate passport pakages ******************************
+website :- http://www.passportjs.org/
+npm i passport
+npm install passport-local (for local stratagies)
+passport work with the help of session
+***********************************************************************************
+
+*********************************socket.io client side ma use karva mate******************************************
+npm i socket.io-client
+
+add this <script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  socket.on('connect', function(){});
+  socket.on('event', function(data){});
+  socket.on('disconnect', function(){});
+</script>
+
+import io from 'socket.io-client';  // import this in clientside
+***************************************************************************
+
+********************************single page order na icon mate ni cdn******************
+website = https://icons8.com/line-awesome/howto
+
+cdn:- <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+************************************************************************************
+
+********************************************************************************
+favicone.ico file  for fab icon in tab but how its work
+**************************************************************************************************************
+go to :- larave-mix.com and chachk docs 
+npm install laravel-mix -D // for laravel mid dowenloed 
+use :- resoures ma je scss and js and sccs ni file 6 tene compile kari public ma je css and js file 6 tema mukavi
+cp node_modules/laravel-mix/setup/webpack.mix.js ./  <== copy this file mins run this in the terminal
+
+webpack.mix.js :-  aa  file copy karya pacchi aani aander path achange karva 
+
+// add this scripts in pakages.json file for laravel-mix ***********************************************
+"development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+
+***************************************
+ npm install cross-env -D  //
+
+ npm run watch :- for run laravel-mix use this commends bro
+*************************************************************************************************************
+git init
+git --version
+git status 
+(Create .gitignorw file) git ma na add karvu hoi te folder mate 
+git add .
+git config --global user.email "vekariyabhautik99999@gmail.com"
+git config --global user.name "Bhautik"
+ git commit -m 'first commit'
+
+*********************************tailwind CSS Start********************************************
+go to :- tailwindcss.com
+
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> copy this link and peast in view folder ma layout ma 
+****************************************tailwind CSS Start*************************************
+
+****************************** form from tailwindcss compnents *****************************************
+
+<!-- forms using talilvin css componentes -->
+
+<!-- https://tailwindcss.com/components/forms   :- get form from hear and modified it -->
+
+
+*********************************************************************************************************
+
+plan start hear **********************************************8*****************************************
+
+Create Directory structure
+Create npm projects and install all dependancies
+  - dependancies
+      - Express
+      - ejs
+      - express-ejs-layout
+  - div dependancies
+      - nodemon
+
+Create a Express Server and Create a server.js file
+Create Home page using html and css 
+    - including tailwind css
+
+git setup and first commit
+install Laravel mix
+    -setup js and scss
+install tailwind css
+Create Home page using html and css
+Create Cart page
+    -order summary section
+    -empty cart section
+
+move routes to routes files
+created dedicated controllers
+Add to cart functionality
+    fetch all pizzas from db and show on home page
+    Create menu model and put dummy data
+    -connect to mongodb
+    -use connect mongo for session store
+        -dependancies
+            -mongoose , express-session, connect-mongo ,dotenv
+    -axios to send ajax request
+    -install notification library :- npm i noty
+
+create login page with routes
+create register page with routes
+Bulid register crud
+    - dependancies : express-flash,express-session , dotenv
+    -status code article https://www.restapitutorial.com/httpststuscodes.html
+Bulid login using passport
+    -install dependancies : passport,passport-local,express-session
+create order controllers and link it in server.js
+Create order view with tabel for customer and admin
+create order singel page with status
+place order functionality
+show orders on customer side 
+show order on admin side 
+
+Create orders singel page with status
+order tracker
+    - dependancies moment
+
+Socket connection
+    - dependancies socket.io 
+
+Build project for deployment
+Deploy project on live Server
+
