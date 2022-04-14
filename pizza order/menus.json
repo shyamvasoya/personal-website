@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Carbonara",
+        "image": "pizza.png",
+        "price": "499",
+        "size": "small"
+    },
+    {
+        "name": "Margherita",
+        "image": "pizza.png",
+        "price": "399",
+        "size": "small"
+    },
+    {
+        "name": "Farm House",
+        "image": "pizza.png",
+        "price": "350",
+        "size": "small"
+    },
+    {
+        "name": "Peppy Paneer",
+        "image": "pizza.png",
+        "price": "199",
+        "size": "small"
+    },
+    {
+        "name": "Mexican Green",
+        "image": "pizza.png",
+        "price": "399",
+        "size": "small"
+    },
+    {
+        "name": "Deluxe Veggie",
+        "image": "pizza.png",
+        "price": "200",
+        "size": "small"
+    },
+    {
+        "name": "PANEER MAKHANI",
+        "image": "pizza.png",
+        "price": "149",
+        "size": "small"
+    },
+    {
+        "name": "FRESH VEGGIE",
+        "image": "pizza.png",
+        "price": "249",
+        "size": "small"
+    }
+]

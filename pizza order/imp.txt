@@ -1,0 +1,141 @@
+// online databasde mongodb atlas ==> mongodb+srv://bhautik2903:bhautik2903@cluster0.ywy8h.mongodb.net/pizza?retryWrites=true&w=majority
+
+
+
+// setup larawel-mix
+https://laravel-mix.com/
+https://laravel-mix.com/docs/6.0/installation
+
+// use of larawel-mix :- aapde je js lakhavi tene morden js ma convert kare and aa convert kareli js aapde batha browser ma use kari sakai and sarkhu kaam kare so aano use karvano hoi
+
+step-1 :- npm install laravel-mix --save-dev
+step-2 :- cp node_modules/laravel-mix/setup/webpack.mix.js (optional in new version of larawel-mix)
+step-3 :- go to webpack.mix.js and edit below line like this 
+step-4 :- mix.js('resources/js/app.js', 'public/js/app.js').sass('resources/scss/app.scss', 'public/css/app.css');         set this (kai file mathi kai file ma compile karvi 6 te lakhavanu)
+
+step-5 :- add this scripts in pakage.json (in new verstion not required)
+
+===> "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+
+npm i cross-env
+
+step-6 :- for start larawel :- npm run watch
+
+// for new version setup  (look at documentation)
+
+
+
+/// for csss +++++> we use tailwind css **************************************************************************
+==> Website :- https://tailwindcss.com/docs/installation
+
+==> add this in home.ejs ==> <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+// ********************* janrated favicon.ico *************************************************************
+
+==> googel how to convert png img to favicon.ico 
+==> janrated thaya pacchi te ico img file ne public folder ma muko aaatle tab ma te icon jova male
+
+
+
+// ******************* ADD TO CART   **************************************************************
+
+// jay suthi cookies valid hoi tay suthi session valied hoi
+npm i express-session
+
+step -2
+// session config in server.js 
+app.use(session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    store: mongoStore, // aahi je MongoDb_Session_store store banavi yo te aahi aapvo 
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 } // cookies exp time in mili seconds (// 24 hr 6 aa time )
+}));
+
+npm i express-flash (flash ma je error hoi te store karvani hoi and te flash sesstion ma store thai)
+app.use(flash()); // error mesg session ni help thi clint side mokal va mate (sesstion ma error store kare or (messages store kare));
+// flash only one request mate hoi
+<!-- flash ma je jetali error hoi te bathi messages namna obj ma store thai 
+            messages.key lakho aate je error store kari hoi te male (key flash create karti vakhate aapeli hoi)
+          -->
+
+// by defulet session store in memory
+
+//=> how sesstion store in data base ? **
+
+npm i connect-mongo
+
+const MongoDb_Session_store = require('connect-mongo')(session);  // in server.js
+
+const connection = mongoose.connection;
+
+let mongoStore = new MongoDb_Session_store({
+    mongooseConnection: connection,
+    collection: 'sessions' // this collections crested in db for session store
+})
+
+// now we can use req.session for access our web session
+
+// in server.js // session and login user ne html page ma as variabel access karva mate (imp)
+app.use((req, res, next) => {
+    // ejs or html templetes ma session key aavalabel karvamate by defultes te avalabel na hoi html ma so aa middelware use karvo (seesion.cart mathi totalQty layout.ejs ma batava matae)
+    res.locals.session = req.session;
+
+    // ejs or html templetes ma kayo user logged in 6 te and ejs ma user melava mate aa use kar u 6
+    res.locals.user = req.user // deserializeUser method je passport ma 6 tenathi aa male(req.user)
+    next();
+})
+
+
+
+// add notification for cards ******************************************************************************
+
+npm i noty
+// notifications scss start add into scss file
+@import "~noty/src/noty.scss";
+@import "~noty/src/themes/mint.scss";
+
+import Noty from 'noty';
+new Noty({
+                type: 'success',
+                timeout: 1000,
+                text: 'Items added to cart',
+                // progressBar: false, // timeout progressbar na joi ye to
+                // layout : ''bottomLeft, // notification ni position set karva mate
+            }).show();
+
+
+
+// USER AUTHANTICATION USING PASSPORT **************************************************************************
+
+http://www.passportjs.org/packages/ <== web site 
+
+we use passport-local ==> http://www.passportjs.org/packages/passport-local/
+
+npm install passport
+npm install passport-local
+
+
+// add this in server.js
+const passport = require('passport'); // for authiantications
+const passportInit = require('./app/config/passport');
+passportInit(passport)
+app.use(passport.initialize())
+app.use(passport.session())
+
+pacchi je config/passport ma logic 6 te lakho
+
+
+
+
+
+
+/// server start commend
+
+npm run dev (folder location)
+npm run watch (folder loaction  )
+mongo start
