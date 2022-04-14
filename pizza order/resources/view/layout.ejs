@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!-- for favicon ------------- -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff"> -->
+    <!-- --------------------------------------------- -->
+
+    <!-- googel font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- singel page order icon mate ni cdn -->
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/app.css">
+    <title>Real Time Pizza App</title>
+</head>
+
+<body>
+    <nav class="container mx-auto flex items-center justify-between py-4">
+        <!-- py-4 mins 1rem from top or bootem -->
+        <div>
+            <a href="/">
+                <img src="/img/logo.png" alt="logo">
+            </a>
+        </div>
+        <div>
+            <ul class="flex items-center">
+
+                <li class="ml-6"><a href="/">Menu</a></li>
+                <li class="ml-6"><a href="">Offers</a></li>
+                <% if(user) { %>
+
+
+                    <li class="ml-6">
+                        <!-- logout per post req javani 6 aatle aahi form banvu pade -->
+                        <form id="logout" action="/logout" method="POST">
+                            <a onclick="document.getElementById('logout').submit()" href="#">Logout</a>
+                        </form>
+                    </li>
+                    <li class="ml-6 "><a href="/" id="loginUser">
+                            LoggedIN User :- <%= user.email %>
+                        </a></li>
+
+                    <% } else { %>
+                        <li class="ml-6"><a href="/register">Register</a></li>
+                        <li class="ml-6"><a href="/login">Login</a></li>
+                        <% } %>
+
+                            <li class="ml-6">
+                                <a href="/cart" class="inline-block px-4 py-2 rounded-full flex items-center">
+                                    <span class="cartCounter text-white font-bold pr-2">
+                                        <%= session.cart ? session.cart.totalQty : '' %>
+                                    </span>
+                                    <img src="/img/cart.png" alt="cart">
+                                </a>
+                            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <%- body %>
+
+        <!-- scoket ne client side ma use karva mate -->
+
+
+        <!-- <script src="/socket.io/socket.io.js"></script>  -->
+        <script src="/js/app.js"></script>
+</body>
+
+</html>
